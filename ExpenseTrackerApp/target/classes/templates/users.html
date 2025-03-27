@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .message {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px;
+            color: black;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2>Lista de Usuarios</h2>
+
+<div th:if="${message}" class="message" th:text="${message}"></div>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+    </tr>
+</table>
+
+<h3>Create a New User</h3>
+<form action="/add-user" method="post">
+    <label>LastName and Name</label>
+    <input type="text" name="name" required><br>
+    <label>Email</label>
+    <input type="text" name="email" required><br>
+    <button type="submit">Add User</button>
+</form>
+
+<div class="button-container">
+    <a href="/users-view">
+        <button type="button">Back to Users View</button>
+    </a>
+</div>
+
+</body>
+</html>
